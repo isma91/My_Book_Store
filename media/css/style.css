@@ -82,3 +82,6 @@ button:focus {
 	font-weight: bold;
 	font-size: 1.3em;
 }
+#display_user_pass {
+	cursor: pointer;
+}
