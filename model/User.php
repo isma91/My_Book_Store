@@ -14,33 +14,4 @@
 namespace model;
 class User
 {
-	private $_login;
-	private $_pass;
-	private $_token;
-
-	public function setLogin($login)
-	{
-		$this->$_login = $login;
-	}
-	public function setPass($pass)
-	{
-		$this->$_pass = $pass;
-	}
-	public function setToken($token)
-	{
-		$this->$_token = $token;
-	}
-
-	private function getLogin()
-	{
-		return $this->$_login;
-	}
-	private function getPass()
-	{
-		return $this->$_pass;
-	}
-	private function getToken()
-	{
-		return $this->$_token;
-	}
 }
