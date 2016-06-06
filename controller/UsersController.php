@@ -43,9 +43,8 @@ class UsersController extends User
     public function connexion($login, $password)
     {
         $bdd = new Bdd();
-        $user_model = new User();
 
-        $get_user = $bdd->getBdd()->prepare('SELECT id, pass FROM users WHERE (login = :login OR email = :login)');
+        $get_user = $bdd->getBdd()->prepare('SELECT id, pass FROM users WHERE login = :login');
         $get_user->bindParam(':login', $login);
         $get_user->execute();
         $user = $get_user->fetch(\PDO::FETCH_ASSOC);
@@ -61,9 +60,6 @@ class UsersController extends User
         if (!$this->_update_token($user['id'])) {
             self::send_json("A problem occurred when we create a token for you !! Please contact the admin of the site !!", null);
         } else {
-            $user_model->setLogin($login);
-            $user_model->setLogin(self::_hash_password($password));
-            $user_model->setToken($_SESSION['token']);
             self::send_json(null, null);
         }
     }
