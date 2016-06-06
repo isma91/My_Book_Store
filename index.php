@@ -15,15 +15,27 @@
 session_start();
 require 'autoload.php';
 use controller\UsersController;
-
-function go_to_view ($page) {
-    include "./view/" . $page;
-}
 $connected = UsersController::is_connected();
+function go_to_view ($page) {
+	if (UsersController::is_connected()) {
+		include "./view/" . $page;
+	} else {
+		include "./view/home_page.php";
+	}
+}
 if ($_GET) {
+	switch ($_GET["page"]) {
+		case 'books':
+		go_to_view("books.php");
+		break;
+		default:
+		go_to_view("books.php");
+		break;
+	}
 } else {
-    if ($connected) {
-    } else {
-        go_to_view("home_page.php");
-    }
+	if ($connected) {
+		go_to_view("books.php");
+	} else {
+		go_to_view("home_page.php");
+	}
 }
