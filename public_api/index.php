@@ -14,9 +14,14 @@
 session_start();
 require '../autoload.php';
 use controller\UsersController;
+use controller\BooksController;
 $user = new UsersController();
+$book = new BooksController();
 switch ($_POST["action"]) {
 	case 'connexion':
 	$user->connexion($_POST["login"], $_POST["pass"]);
+	break;
+	case 'get_all_books':
+	$book->get_all();
 	break;
 }
