@@ -12,12 +12,7 @@
         <div class="row mui-panel" id="the_menu">
             <h1 class="title">Welcome to My_Book_Store !!</h1>
             <h2 class="title">Here is the list of all books !!</h2>
-            <div class="row end_button">
-                <button class="waves-effect btn-flat" id="logout" token='<?php echo $_SESSION["token"] ?>'>Logout</button>
-                <a class="waves-effect btn-flat" href="?page=add_book">Ajouter Livre</a>
-                <a class="waves-effect btn-flat" href="?page=add_customer">Ajouter Client</a>
-                <a class="waves-effect btn-flat" href="?page=add_command">Ajouter Commande</a>
-            </div>
+            <?php include "button.php"; ?>
         </div>
         <div id="all_books">
         <!--<div class="row">
