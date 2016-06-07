@@ -91,22 +91,18 @@ class UsersController extends User
         return password_verify($password, $hash);
     }
 
-    public function logout($id, $token)
+    public function logout($token)
     {
         $bdd = new Bdd();
-        if (self::user_exist($id)) {
-            $get_token = $bdd->getBdd()->prepare('SELECT token FROM users WHERE  id = :id AND active = 1');
-            $get_token->bindParam(':id', $id);
-            $get_token->execute();
-            $user_token = $get_token->fetch(\PDO::FETCH_ASSOC);
-            if ($user_token["token"] === $token) {
-                session_destroy();
-                self::send_json(null, null);
-            } else {
-                self::send_json("Bad token !! Please delete your cache and your cookie of this site !!", null);
-            }
+        $get_token = $bdd->getBdd()->prepare('SELECT token FROM users WHERE id = :id');
+        $get_token->bindParam(':id', $_SESSION['id']);
+        $get_token->execute();
+        $user_token = $get_token->fetch(\PDO::FETCH_ASSOC);
+        if ($user_token["token"] === $token) {
+            session_destroy();
+            self::send_json(null, null);
         } else {
-            self::send_json("User not found !!", null);
+            self::send_json("Bad token !! Please delete your cache and your cookie of this site !!", null);
         }
     }
 
