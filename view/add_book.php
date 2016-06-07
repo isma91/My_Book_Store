@@ -15,7 +15,7 @@
             <?php include "button.php"; ?>
         </div>
         <div id="add_book" class="row">
-            <form class="col s12" method="POST" action="public_api/index.php">
+            <form class="col s12" method="POST" action="public_api/index.php" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="add_book">
                 <div class="row">
                     <div class="input-field col s12">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select multiple="true" name="kind" id="select_kind">
+                        <select multiple="true" name="kind[]" id="select_kind">
                         <option value="action">Action</option>
                         <option value="adventure">Adventure</option>
                         <option value="detective">Detective</option>
