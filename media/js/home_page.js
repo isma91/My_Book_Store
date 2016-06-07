@@ -18,11 +18,11 @@ $(document).ready(function(){
         user_login = $.trim($("#user_login").val());
         user_pass = $("#user_pass").val();
         if (user_login === "") {
-            Materialize.toast('<p class="alert-failed">Login empty !! !!<p>', 3000, 'rounded alert-failed');
+            Materialize.toast('<p class="alert-failed">Login empty !! !!<p>', 1500, 'rounded alert-failed');
             error_connexion = error_connexion + 1;
         }
         if (user_pass === "") {
-            Materialize.toast('<p class="alert-failed">Pass empty !! !!<p>', 3000, 'rounded alert-failed');
+            Materialize.toast('<p class="alert-failed">Pass empty !! !!<p>', 1500, 'rounded alert-failed');
             error_connexion = error_connexion + 1;
         }
         if (error_connexion === 0) {
@@ -34,7 +34,7 @@ $(document).ready(function(){
                         window.location = "?page=books";
                     }, 1000);
                 } else {
-                    Materialize.toast('<p class="alert-failed">' + data.error + '<p>', 3000, 'rounded alert-failed');
+                    Materialize.toast('<p class="alert-failed">' + data.error + '<p>', 1500, 'rounded alert-failed');
                 }
             });
         }
