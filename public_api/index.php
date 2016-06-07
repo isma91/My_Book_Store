@@ -24,4 +24,7 @@ switch ($_POST["action"]) {
 	case 'get_all_books':
 	$book->get_all();
 	break;
+	case 'logout':
+	$user->logout($_POST['token']);
+	break;
 }
