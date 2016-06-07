@@ -15,7 +15,7 @@
             <?php include "button.php"; ?>
         </div>
         <div id="add_book" class="row">
-            <form class="col s12" method="POST" action="public_api/index.php" enctype="multipart/form-data">
+            <form class="col s12" method="POST" enctype="multipart/form-data" id="add_book_form">
                 <input type="hidden" name="action" value="add_book">
                 <div class="row">
                     <div class="input-field col s12">
@@ -52,20 +52,20 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <select multiple="true" name="kind[]" id="select_kind">
-                        <option value="action">Action</option>
-                        <option value="adventure">Adventure</option>
-                        <option value="detective">Detective</option>
-                        <option value="drama">Drama</option>
-                        <option value="erotic">Erotic</option>
-                        <option value="fantasy">Fantasy</option>
-                        <option value="horror">Horror</option>
-                        <option value="humour">Humour</option>
-                        <option value="legend">Legend</option>
-                        <option value="mystery">Mystery</option>
-                        <option value="mythology">Mythology</option>
-                        <option value="romance">Romance</option>
-                        <option value="science fiction">Science Fiction</option>
-                        <option value="western">Western</option>
+                            <option value="action">Action</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="detective">Detective</option>
+                            <option value="drama">Drama</option>
+                            <option value="erotic">Erotic</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="horror">Horror</option>
+                            <option value="humour">Humour</option>
+                            <option value="legend">Legend</option>
+                            <option value="mystery">Mystery</option>
+                            <option value="mythology">Mythology</option>
+                            <option value="romance">Romance</option>
+                            <option value="science fiction">Science Fiction</option>
+                            <option value="western">Western</option>
                         </select>
                         <label for="kind" id="label_kind">Kind Of Novel</label>
                     </div>
@@ -85,7 +85,7 @@
                     <input type="date" name="date" id="date" class="datepicker">
                 </div>
                 <div class="row end_button">
-                    <button class="waves-effect btn-flat">Add The Book</button>
+                    <button class="waves-effect btn-flat" name="validate_add_book">Add The Book</button>
                 </div>
             </div>
         </form>
