@@ -34,7 +34,7 @@ $(document).ready(function(){
                         window.location = "?page=books";
                     }, 1000);
                 } else {
-                    Materialize.toast('<p class="alert-failed">a problem occurred while sending your data in the server !! Please contact the admin of the site !!<p>', 3000, 'rounded alert-failed');
+                    Materialize.toast('<p class="alert-failed">' + data.error + '<p>', 3000, 'rounded alert-failed');
                 }
             });
         }
