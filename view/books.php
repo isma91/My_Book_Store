@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="My_Mini_Tweet is a good way to test your own ego !!" />
+    <meta name="description" content="My_Book_Store" />
     <title>Welcome to My_Mini_Tweet</title>
     <?php include "media.html" ?>
     <script src="media/js/books.js"></script>
@@ -14,6 +14,9 @@
             <h2 class="title">Here is the list of all books !!</h2>
             <div class="row end_button">
                 <button class="waves-effect btn-flat" id="logout" token='<?php echo $_SESSION["token"] ?>'>Logout</button>
+                <a class="waves-effect btn-flat" href="?page=add_book">Ajouter Livre</a>
+                <a class="waves-effect btn-flat" href="?page=add_customer">Ajouter Client</a>
+                <a class="waves-effect btn-flat" href="?page=add_command">Ajouter Commande</a>
             </div>
         </div>
         <div id="all_books">
