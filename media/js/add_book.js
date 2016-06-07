@@ -27,4 +27,22 @@ $(document).ready(function(){
 		$('select').material_select();
 		$('#label_kind').html('Kind Of ' + $(this).val().charAt(0).toUpperCase() + $(this).val().slice(1));
 	});
+	$(document).on('submit', '#add_book_form', function(event) {
+		//event.preventDefault();
+		var formData = new FormData($(this)[0]);
+		$.ajax({
+			url: path_to_ajax,
+			type: 'POST',
+			data: formData,
+			async: false,
+			success: function (data) {
+				data = JSON.parse(data);
+				console.log(data)
+			},
+			cache: false,
+			contentType: false,
+			processData: false
+		});
+		return false;
+	});
 });
