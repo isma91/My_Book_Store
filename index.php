@@ -17,14 +17,25 @@ require 'autoload.php';
 use controller\UsersController;
 $connected = UsersController::is_connected();
 function go_to_view ($page) {
-	if (UsersController::is_connected()) {
-		include "./view/" . $page;
+	if ($page === "home_page.php") {
+		if (UsersController::is_connected()) {
+			go_to_view("books.php");
+		} else {
+			go_to_view("home_page.php");
+		}
 	} else {
-		include "./view/home_page.php";
+		if (UsersController::is_connected()) {
+			include "./view/" . $page;
+		} else {
+			include "./view/home_page.php";
+		}
 	}
 }
 if ($_GET) {
 	switch ($_GET["page"]) {
+		case 'home':
+		go_to_view("home_page.php");
+		break;
 		case 'books':
 		go_to_view("books.php");
 		break;
@@ -33,9 +44,5 @@ if ($_GET) {
 		break;
 	}
 } else {
-	if ($connected) {
-		go_to_view("books.php");
-	} else {
-		go_to_view("home_page.php");
-	}
+	go_to_view("home_page.php");
 }
