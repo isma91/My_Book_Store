@@ -38,9 +38,9 @@ $(document).ready(function(){
     $(document).on('keyup', '#resume', function(event) {
         event.preventDefault();
         $('#resume_count').html($.trim($(this).val()).length);
-        if ($.trim($(this).val()).length > 140) {
+        if ($.trim($(this).val()).length > 600) {
             change_to_invalide('#resume');
-            $('#resume_error').html('<p>Resume too much long !!(max 140 characters)</p>');
+            $('#resume_error').html('<p>Resume too much long !!(max 600 characters)</p>');
             $('#resume_count').css('color', '#FF0000');
         } else if ($.trim($(this).val()).length === 0) {
             change_to_invalide('#resume');
