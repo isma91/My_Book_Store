@@ -69,15 +69,19 @@ textarea.materialize-textarea:focus:not([readonly]) {
 	box-shadow: 0 1px 0 0 #000000;
 }
 button:hover,
-.btn:hover {
+.btn:hover,
+a:hover {
 	background-color: #D3D3D3;
 	color: #000000;
+	text-decoration: none;
 }
 button:focus,
 .btn,
-.btn:focus {
+.btn:focus,
+a:focus {
 	background-color: #000000;
 	color: #FFFFFF;
+	text-decoration: none;
 }
 #div_error {
 	text-align: center;
@@ -98,4 +102,18 @@ label,
 .picker__day--selected:hover,
 .picker--focused .picker__day--selected {
 	background-color: #000000;
+}
+#add_book_error,
+#resume_error {
+	text-align: center;
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 1.1em;
+}
+#toast-container {
+	width: 100%;
+}
+#resume_count {
+	float: right;
+	font-weight: bold;
 }
