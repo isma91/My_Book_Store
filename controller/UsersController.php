@@ -43,7 +43,6 @@ class UsersController extends User
     public function connexion($login, $password)
     {
         $bdd = new Bdd();
-
         $get_user = $bdd->getBdd()->prepare('SELECT id, pass FROM users WHERE login = :login');
         $get_user->bindParam(':login', $login);
         $get_user->execute();
@@ -67,7 +66,6 @@ class UsersController extends User
     private function _update_token($id)
     {
         $bdd = new Bdd();
-
         $token = sha1(time() * rand(1, 555));
         $update_token = $bdd->getBdd()->prepare('UPDATE users SET token = :token WHERE id = :id');
         $update_token->bindParam(':token', $token, \PDO::PARAM_STR, 60);
