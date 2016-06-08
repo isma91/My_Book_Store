@@ -39,6 +39,12 @@ if ($_GET) {
 		case 'books':
 		go_to_view("books");
 		break;
+		case 'customers':
+		go_to_view("customers");
+		break;
+		case 'commands':
+		go_to_view("commands");
+		break;
 		case 'add_book':
 		go_to_view("add_book");
 		break;
