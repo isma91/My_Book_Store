@@ -14,6 +14,8 @@
             <h2 class="title">You can add a boook here !!</h2>
             <?php include "button.php"; ?>
         </div>
+        <div id="add_book_error"></div>
+        <div id="resume_error"></div>
         <div id="add_book" class="row">
             <form class="col s12" method="POST" enctype="multipart/form-data" id="add_book_form">
                 <input type="hidden" name="action" value="add_book">
@@ -64,7 +66,7 @@
                             <option value="mystery">Mystery</option>
                             <option value="mythology">Mythology</option>
                             <option value="romance">Romance</option>
-                            <option value="science fiction">Science Fiction</option>
+                            <option value="science fiction">Science fiction</option>
                             <option value="western">Western</option>
                         </select>
                         <label for="kind" id="label_kind">Kind Of Novel</label>
@@ -77,12 +79,19 @@
                         <input type="file" accept="image/*" name="cover">
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path" type="text">
+                        <input class="file-path" type="text" id="file_path">
                     </div>
                 </div>
                 <div class="row">
                     <label for="date">Year of publication</label>
                     <input type="date" name="date" id="date" class="datepicker">
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="resume" name="resume" class="materialize-textarea"></textarea>
+                        <label for="resume" id="label_resume">Resume of </label>
+                        <span id="resume_count">0</span>
+                    </div>
                 </div>
                 <div class="row end_button">
                     <button class="waves-effect btn-flat" name="validate_add_book">Add The Book</button>
