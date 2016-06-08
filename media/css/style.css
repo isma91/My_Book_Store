@@ -117,3 +117,23 @@ label,
 	float: right;
 	font-weight: bold;
 }
+.dropdown-button,
+.all_kind,
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating),
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+.dropdown-content li,
+.kind {
+	margin: auto;
+	text-align: center;
+	font-size: 1.2em;
+	cursor: pointer;
+}
+.type span,
+.author span,
+.editor span,
+.year span {
+	cursor: pointer;
+}
