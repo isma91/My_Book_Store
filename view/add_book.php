@@ -67,6 +67,8 @@
                             <option value="mythology">Mythology</option>
                             <option value="romance">Romance</option>
                             <option value="science fiction">Science fiction</option>
+                            <option value="suspence">Suspence</option>
+                            <option value="thriller">Thriller</option>
                             <option value="western">Western</option>
                         </select>
                         <label for="kind" id="label_kind">Kind Of Novel</label>
