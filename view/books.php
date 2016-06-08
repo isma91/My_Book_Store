@@ -14,8 +14,7 @@
       <h2 class="title">Here is the list of all books !!</h2>
       <?php include "button.php"; ?>
     </div>
-    <div id="all_books">
-    </div>
+    <div class="row" id="all_books"></div>
   </div>
 </body>
 </html>
