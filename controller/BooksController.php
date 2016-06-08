@@ -27,7 +27,7 @@ class BooksController extends Book
         $bdd = new Bdd();
         $get_books = $bdd->getBdd()->prepare('SELECT * FROM books');
         $get_books->execute();
-        $books = $get_books->fetch(\PDO::FETCH_ASSOC);
+        $books = $get_books->fetchAll(\PDO::FETCH_ASSOC);
         self::send_json(null, $books);
     }
 
