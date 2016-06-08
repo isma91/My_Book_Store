@@ -36,11 +36,19 @@ class BooksController extends Book
         $bdd = new Bdd();
         $kind = implode(";", $tab_kind);
         $date = intval(substr($date, -4));
-        $file_name = uniqid("cover_", true);
+        $cover_file_name = $cover["name"];
         $file_type = $cover["type"];
         $file_tmp_name = $cover["tmp_name"];
         $file_error = $cover["error"];
         $file_size = $cover["size"];
+        $exploded_file_name = explode(".", $cover_file_name);
+        $exploded_file_name[0] = $exploded_file_name[0] . uniqid("cover_", true);
+        for ($i = 0; $i < count($exploded_file_name); $i = $i + 1) {
+            if ($i !== (count($exploded_file_name) -1)) {
+                $exploded_file_name[$i] = $exploded_file_name[$i] . ".";
+            }
+        }
+        $file_name = implode('', $exploded_file_name);
         if ($file_error !== 0) {
             self::send_json("An error occurred while we take the picture !!", null);
         }
