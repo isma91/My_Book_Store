@@ -61,6 +61,7 @@ class BooksController extends Book
                 self::send_json('A problem occurred while creating the book in the database !! Please contact the admin of the site !!', null);
             }
             if (rename($file_tmp_name, __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "media" . DIRECTORY_SEPARATOR . "cover" . DIRECTORY_SEPARATOR . $file_name)) {
+                chmod(__DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "media" . DIRECTORY_SEPARATOR . "cover" . DIRECTORY_SEPARATOR . $file_name, 0777);
                 $update = $bdd->getBdd()->prepare('UPDATE books SET cover = :cover WHERE id = :id');
                 $update->bindParam(':cover', $file_name);
                 $update->bindParam(':id', $bdd->getBdd()->lastInsertId());
