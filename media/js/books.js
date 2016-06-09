@@ -15,7 +15,7 @@ $(document).ready(function(){
     $.post(path_to_ajax, {action: 'get_all_books'}, function(data) {
         data = JSON.parse(data);
         if (data.error === null) {
-            if (data.data === false) {
+            if (data.data === false || data.data.length === 0) {
                 $('#all_books').html("<center><p>no books found !!!</p></center>");
             } else {
                 all_books = "";
@@ -24,7 +24,7 @@ $(document).ready(function(){
                     $.each(object.kind.split(';'), function(i, kind) {
                         all_kind = all_kind + '<li class="kind">' + kind + '</li>';
                     });
-                    all_books = all_books + '<div class="col s4"><div class="card" id="' + object.id + '"><div class="card-image"><img class="materialboxed" data-caption="' + object.name + '" src="media/cover/' + object.cover + '"><span class="card-title">' + object.name + '</span></div><div class="card-content"><p>' + object.resume + '</p><div><div class="card-action"><p class="type">Type : <span>' + object.type + '</span></p><p class="author">Author :  <span>' + object.author + '</span></p><p class="editor">Editor : <span>' + object.editor + '</span></p><p class="year">Year : <span>' + object.year + '</span></p><a class="dropdown-button btn" href="#" data-activates="all_kind_' + object.id + '">Genre :</a><ul id="all_kind_' + object.id + '" class="dropdown-content all_kind">' + all_kind + '</ul></div></div></div></div></div>';
+                    all_books = all_books + '<div class="col s4"><div class="card" id="' + object.id + '"><div class="card-image"><img class="materialboxed" data-caption="' + object.name + '" src="media/cover/' + object.cover + '"><span class="card-title">' + object.name + '</span></div><div class="card-content"><p>' + object.resume + '</p><div><div class="card-action"><p class="type">Type : <span>' + object.type + '</span></p><p class="author">Author :  <span>' + object.author + '</span></p><p class="editor">Editor : <span>' + object.editor + '</span></p><p class="year">Year : <span>' + object.year + '</span></p><a class="dropdown-button btn" href="#" data-activates="all_kind_' + object.id + '">Genre :</a><ul id="all_kind_' + object.id + '" class="dropdown-content all_kind">' + all_kind + '</ul><a class="waves-effect btn-flat" href="?page=edit_book&id=' + object.id + '">Edit</a></div></div></div></div></div>';
                     all_kind = "";
                 });
                 $('#all_books').html(all_books);
