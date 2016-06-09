@@ -26,6 +26,7 @@ switch ($_POST["action"]) {
 	break;
 	case 'logout':
 	$user->logout($_POST['token']);
+	break;
 	case 'add_book':
 	$book->add_book($_POST["book_name"], $_POST["author"], $_POST["editor"], $_POST["type"], $_POST["kind"], $_FILES["cover"], $_POST["date"], $_POST["resume"]);
 	break;
