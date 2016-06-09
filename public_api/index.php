@@ -15,8 +15,10 @@ session_start();
 require '../autoload.php';
 use controller\UsersController;
 use controller\BooksController;
+use controller\CustomersController;
 $user = new UsersController();
 $book = new BooksController();
+$customer = new CustomersController();
 switch ($_POST["action"]) {
 	case 'connexion':
 	$user->connexion($_POST["login"], $_POST["pass"]);
@@ -29,5 +31,11 @@ switch ($_POST["action"]) {
 	break;
 	case 'add_book':
 	$book->add_book($_POST["book_name"], $_POST["author"], $_POST["editor"], $_POST["type"], $_POST["kind"], $_FILES["cover"], $_POST["date"], $_POST["resume"]);
+	break;
+	case 'add_customer':
+	$customer->add_customer($_POST["firstname"], $_POST["lastname"], $_POST["adresse"], $_POST["city"], $_POST["email"]);
+	break;
+	case 'get_all_customers':
+	$customer->get_all();
 	break;
 }
