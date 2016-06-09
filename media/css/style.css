@@ -104,7 +104,8 @@ label,
 	background-color: #000000;
 }
 #add_book_error,
-#resume_error {
+#resume_error,
+#add_customer_error {
 	text-align: center;
 	color: #FF0000;
 	font-weight: bold;
