@@ -22,6 +22,20 @@ class UsersController extends User
         echo json_encode(array("error" => $error, "data" => $data));
     }
 
+    private function _check_token ($token)
+    {
+        $bdd = new Bdd();
+        $get_token = $bdd->getBdd()->prepare("SELECT token FROM users WHERE id = :id");
+        $get_token->bindParam(":id", $_SESSION["id"]);
+        $get_token->execute();
+        $bdd_token = $get_token->fetch(\PDO::FETCH_ASSOC);
+        if ($token === $bdd_token["token"]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     static public function is_connected ()
     {
         $bdd = new Bdd();
