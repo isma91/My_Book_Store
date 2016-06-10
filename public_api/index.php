@@ -47,4 +47,7 @@ switch ($_POST["action"]) {
 	case 'get_all_customers':
 	$customer->get_all();
 	break;
+	case 'get_customer':
+	$customer->get_customer($_POST["id"], $_SESSION["token"]);
+	break;
 }
