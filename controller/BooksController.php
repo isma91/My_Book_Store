@@ -203,6 +203,7 @@ class BooksController extends Book
         $book = $get_book->fetch(\PDO::FETCH_ASSOC);
         self::send_json(null, $book);
     }
+    
     public function remove_book($id, $token)
     {
         $id = intval($id);
