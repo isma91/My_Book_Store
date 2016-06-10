@@ -153,7 +153,6 @@ $(document).ready(function(){
                 async: false,
                 success: function (data) {
                     data = JSON.parse(data);
-                    console.log(data);
                     if (data.error === null) {
                         Materialize.toast('<p class="alert-success">Book edited successfully !!<p>', 3000, 'rounded alert-success');
                     } else {
