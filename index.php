@@ -60,6 +60,12 @@ if ($_GET) {
 		case 'add_command':
 		go_to_view("add_command");
 		break;
+		case 'edit_command':
+		go_to_view("edit_command");
+		break;
+		case 'edit_user':
+		go_to_view("edit_user");
+		break;
 		default:
 		go_to_view("books");
 		break;
