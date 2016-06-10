@@ -38,6 +38,9 @@ switch ($_POST["action"]) {
 	case 'edit_book':
 	$book->edit_book($_POST['id'], $_POST["book_name"], $_POST["author"], $_POST["editor"], $_POST["type"], $_POST["kind"], $_FILES["cover"], $_POST["date"], $_POST["resume"]);
 	break;
+	case 'remove_book':
+	$book->remove_book($_POST['id'], $_SESSION["token"]);
+	break;
 	case 'add_customer':
 	$customer->add_customer($_POST["firstname"], $_POST["lastname"], $_POST["adresse"], $_POST["city"], $_POST["email"]);
 	break;
