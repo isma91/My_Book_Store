@@ -53,4 +53,7 @@ switch ($_POST["action"]) {
 	case 'edit_customer':
 	$customer->edit_customer($_POST["id"], $_POST["firstname"], $_POST["lastname"], $_POST["adresse"], $_POST["city"], $_POST["email"]);
 	break;
+	case 'remove_customer':
+	$customer->remove_customer($_POST['id'], $_SESSION["token"]);
+	break;
 }
