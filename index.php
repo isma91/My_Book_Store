@@ -39,20 +39,23 @@ if ($_GET) {
 		case 'books':
 		go_to_view("books");
 		break;
-		case 'customers':
-		go_to_view("customers");
-		break;
-		case 'commands':
-		go_to_view("commands");
-		break;
 		case 'add_book':
 		go_to_view("add_book");
 		break;
 		case 'edit_book':
 		go_to_view("edit_book");
 		break;
+		case 'customers':
+		go_to_view("customers");
+		break;
 		case 'add_customer':
 		go_to_view("add_customer");
+		break;
+		case 'edit_customer':
+		go_to_view("edit_customer");
+		break;
+		case 'commands':
+		go_to_view("commands");
 		break;
 		case 'add_command':
 		go_to_view("add_command");
