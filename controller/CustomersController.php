@@ -123,4 +123,25 @@ class CustomersController extends Customer
             }
         }
     }
+
+    public function remove_customer($id, $token)
+    {
+        $id = intval($id);
+        if (!is_int($id)) {
+            self::send_json("The id of the customer mus be an integer !!", null);
+            return false;
+        }
+        if (!$this->_check_token($token)) {
+            self::send_json("Bad token !! Logout and login to avoid the problem !!", null);
+            return false;
+        }
+        $bdd = new Bdd();
+        $remove_customer = $bdd->getBdd()->prepare("DELETE FROM customers WHERE id = :id");
+        $remove_customer->bindParam(":id", $id);
+        if (!$remove_customer->execute()) {
+            self::send_json('A problem occurred while removing the customer in the database !! Please contact the admin of the site !!', null);
+        } else {
+            self::send_json(null, null);
+        }
+    }
 }
