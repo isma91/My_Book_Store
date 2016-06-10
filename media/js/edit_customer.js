@@ -39,6 +39,11 @@ $(document).ready(function(){
     function edit_customer () {
         edit_customer_error = "";
         $('#edit_customer_error').html('');
+        change_to_valide('#first_name');
+        change_to_valide('#last_name');
+        change_to_valide('#adresse');
+        change_to_valide('#email');
+        change_to_valide('#city');
         lastname = $.trim($('#last_name').val());
         firstname = $.trim($('#first_name').val());
         adresse = $.trim($('#adresse').val());
