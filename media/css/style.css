@@ -106,7 +106,8 @@ label,
 #add_book_error,
 #resume_error,
 #add_customer_error,
-#edit_book_error {
+#edit_book_error,
+#edit_customer_error {
 	text-align: center;
 	color: #FF0000;
 	font-weight: bold;
