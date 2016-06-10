@@ -105,7 +105,8 @@ label,
 }
 #add_book_error,
 #resume_error,
-#add_customer_error {
+#add_customer_error,
+#edit_book_error {
 	text-align: center;
 	color: #FF0000;
 	font-weight: bold;
@@ -137,4 +138,9 @@ label,
 .editor span,
 .year span {
 	cursor: pointer;
+}
+#hidden_type,
+#hidden_kind {
+	display: none;
+	visibility: hidden;
 }
