@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
 * Index.php
 *
@@ -47,6 +47,9 @@ if ($_GET) {
 		break;
 		case 'add_book':
 		go_to_view("add_book");
+		break;
+		case 'edit_book':
+		go_to_view("edit_book");
 		break;
 		case 'add_customer':
 		go_to_view("add_customer");
