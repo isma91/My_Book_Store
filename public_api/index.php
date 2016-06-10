@@ -16,9 +16,11 @@ require '../autoload.php';
 use controller\UsersController;
 use controller\BooksController;
 use controller\CustomersController;
+use controller\OrdersController;
 $user = new UsersController();
 $book = new BooksController();
 $customer = new CustomersController();
+$order = new OrdersController();
 switch ($_POST["action"]) {
 	case 'connexion':
 	$user->connexion($_POST["login"], $_POST["pass"]);
@@ -55,5 +57,20 @@ switch ($_POST["action"]) {
 	break;
 	case 'remove_customer':
 	$customer->remove_customer($_POST['id'], $_SESSION["token"]);
+	break;
+	case 'add_order':
+	$order->add_order();
+	break;
+	case 'get_all_orders':
+	$order->get_all();
+	break;
+	case 'get_order':
+	$order->get_order($_POST["id"], $_SESSION["token"]);
+	break;
+	case 'edit_order':
+	$order->edit_order();
+	break;
+	case 'remove_order':
+	$order->remove_order($_POST['id'], $_SESSION["token"]);
 	break;
 }
