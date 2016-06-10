@@ -50,4 +50,7 @@ switch ($_POST["action"]) {
 	case 'get_customer':
 	$customer->get_customer($_POST["id"], $_SESSION["token"]);
 	break;
+	case 'edit_customer':
+	$customer->edit_customer($_POST["id"], $_POST["firstname"], $_POST["lastname"], $_POST["adresse"], $_POST["city"], $_POST["email"]);
+	break;
 }
