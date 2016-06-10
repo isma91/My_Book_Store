@@ -73,4 +73,54 @@ class CustomersController extends Customer
             }
         }
     }
+
+    public function get_customer($id, $token)
+    {
+        $id = intval($id);
+        if (!is_int($id)) {
+            self::send_json("The id of the customer must be an integer !!", null);
+            return false;
+        }
+        if (!$this->_check_token($token)) {
+            self::send_json("Bad token !! Logout and login to avoid the problem !!", null);
+            return false;
+        }
+        $bdd = new Bdd();
+        $get_customer = $bdd->getBdd()->prepare("SELECT * FROM customers WHERE id = :id");
+        $get_customer->bindParam(":id", $id);
+        $get_customer->execute();
+        $customer = $get_customer->fetch(\PDO::FETCH_ASSOC);
+        self::send_json(null, $customer);
+    }
+
+    public function edit_customer($id, $firstname, $lastname, $adresse, $city, $email)
+    {
+        $bdd = new Bdd();
+        $duplicate_email = false;
+        $get_all_email = $bdd->getBdd()->prepare('SELECT email FROM `customers` WHERE id != :id');
+        $get_all_email->bindParam(":id", $id);
+        $get_all_email->execute();
+        $emails = $get_all_email->fetchAll(\PDO::FETCH_ASSOC);
+        foreach ($emails as $value) {
+            if ($value["email"] === $email) {
+                $duplicate_email = true;
+            }
+        }
+        if ($duplicate_email === true) {
+            self::send_json("Email already used by another customer !!", null);
+        } else {
+            $update = $bdd->getBdd()->prepare('UPDATE `customers` SET `firstname` = :firstname, `lastname` = :lastname, `adresse` = :adresse, `city` = :city, `email` = :email WHERE id = :id');
+            $update->bindParam(':firstname', $firstname);
+            $update->bindParam(':lastname', $lastname);
+            $update->bindParam(':adresse', $adresse);
+            $update->bindParam(':city', $city);
+            $update->bindParam(':email', $email);
+            $update->bindParam(':id', $id);
+            if (!$update->execute()) {
+                self::send_json('A problem occurred while updating the customer in the database !! Please contact the admin of the site !!', null);
+            } else {
+                self::send_json(null, null);
+            }
+        }
+    }
 }
