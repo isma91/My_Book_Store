@@ -9,5 +9,6 @@
 	<a class="waves-effect btn-flat" href="?page=commands">All Commands</a>
 </div>
 <div class="row end_button">
+	<a class="waves-effect btn-flat" href="?page=edit_user">edit your account</a>
 	<button class="waves-effect btn-flat" id="logout" token='<?php echo $_SESSION["token"] ?>'>Logout</button>
 </div>
