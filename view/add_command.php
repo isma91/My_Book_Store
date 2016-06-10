@@ -15,9 +15,18 @@
             <?php include "button.php"; ?>
         </div>
         <div id="add_command">
-        add a command
-          </div>
-      </div>
-  </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select name="type">
+                        <option value="purchase">Purchase</option>
+                        <option value="borrowing">Borrowing</option>
+                    </select>
+                    <label>Type Of Order</label>
+                </div>
+            </div>
+            <div id="all_books"></div>
+            <div id="all_customers"></div>
+        </div>
+    </div>
 </body>
 </html>
