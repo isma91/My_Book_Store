@@ -59,15 +59,15 @@ $(document).ready(function(){
                     if (email.split('@')[1].split(".").length > 1) {
                     } else {
                         add_customer_error = add_customer_error + '<p>Invalid Email !!</p>';
-                        change_to_invalide("email");
+                        change_to_invalide("#email");
                     }
                 } else {
                     add_customer_error = add_customer_error + '<p>Invalid Email !!</p>';
-                    change_to_invalide("email");
+                    change_to_invalide("#email");
                 }
             } else {
                 add_customer_error = add_customer_error + '<p>Invalid Email !!</p>';
-                change_to_invalide("email");
+                change_to_invalide("#email");
             }
         } else {
             add_customer_error = add_customer_error + "<p>Email empty !!</p>";
