@@ -56,7 +56,7 @@ class BooksController extends Book
         $file_error = $cover["error"];
         $file_size = $cover["size"];
         $exploded_file_name = explode(".", $cover_file_name);
-        $exploded_file_name[0] = $exploded_file_name[0] . uniqid("cover_", true);
+        $exploded_file_name[0] = uniqid("cover_", true);
         for ($i = 0; $i < count($exploded_file_name); $i = $i + 1) {
             if ($i !== (count($exploded_file_name) -1)) {
                 $exploded_file_name[$i] = $exploded_file_name[$i] . ".";
@@ -131,7 +131,7 @@ class BooksController extends Book
             $file_error = $cover["error"];
             $file_size = $cover["size"];
             $exploded_file_name = explode(".", $cover_file_name);
-            $exploded_file_name[0] = $exploded_file_name[0] . uniqid("cover_", true);
+            $exploded_file_name[0] = uniqid("cover_", true);
             for ($i = 0; $i < count($exploded_file_name); $i = $i + 1) {
                 if ($i !== (count($exploded_file_name) -1)) {
                     $exploded_file_name[$i] = $exploded_file_name[$i] . ".";
@@ -148,7 +148,7 @@ class BooksController extends Book
         } elseif ($file_size > 5242880) {
             self::send_json("Your picture is more than 5Mo !!", null);
         } else {
-            $create = $bdd->getBdd()->prepare('UPDATE `books` SET `name` = :name, `author` = :author, `editor` = :editor, `year` : year, `kind` :kind, `type` = :type, `resume` :resume WHERE id = :id');
+            $create = $bdd->getBdd()->prepare('UPDATE `books` SET `name` = :name, `author` = :author, `editor` = :editor, `year` = :year, `kind` = :kind, `type` = :type, `resume` = :resume WHERE id = :id');
             $create->bindParam(':name', $book_name);
             $create->bindParam(':author', $author);
             $create->bindParam(':editor', $editor);
@@ -166,7 +166,7 @@ class BooksController extends Book
                     chmod(__DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "media" . DIRECTORY_SEPARATOR . "cover" . DIRECTORY_SEPARATOR . $file_name, 0777);
                     $update = $bdd->getBdd()->prepare('UPDATE books SET cover = :cover WHERE id = :id');
                     $update->bindParam(':cover', $file_name);
-                    $update->bindParam(':id', $bdd->getBdd()->lastInsertId());
+                    $update->bindParam(':id', $id);
                     if (!$update->execute()) {
                         self::send_json('A problem occurred while adding the cover in the database !! Please contact the admin of the site !!', null);
                         return false;
