@@ -16,34 +16,34 @@
         </div>
         <div id="edit_customer_error"></div>
         <div id="edit_customer">
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="hidden" id="id_customer" name="id" value="<?php echo $_GET['id']; ?>">
+            </div>
+        </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="first_name" type="text" name="first_name">
-                    <label for="first_name">Firstname</label>
+                    <input id="first_name" type="text" name="first_name" placeholder="Firstname">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="last_name" type="text" name="last_name">
-                    <label for="last_name">Lastname</label>
+                    <input id="last_name" type="text" name="last_name" placeholder="Lastname">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="adresse" type="text" name="adresse">
-                    <label for="adresse">Adresse</label>
+                    <input id="adresse" type="text" name="adresse" placeholder="Adresse">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="city" type="text" name="city">
-                    <label for="city">City</label>
+                    <input id="city" type="text" name="city" placeholder="City">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="email" type="email" name="email">
-                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" placeholder="Email">
                 </div>
             </div>
             <div class="row end_button">
