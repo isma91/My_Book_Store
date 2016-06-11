@@ -25,6 +25,12 @@ switch ($_POST["action"]) {
 	case 'connexion':
 	$user->connexion($_POST["login"], $_POST["pass"]);
 	break;
+	case 'edit_login':
+	$user->edit_login($_SESSION["id"], $_POST["old_login"], $_POST["new_login"], $_SESSION["token"]);
+	break;
+	case 'edit_password':
+	$user->edit_password($_SESSION["id"], $_POST["old_password"], $_POST["new_password"], $_SESSION["token"]);
+	break;
 	case 'get_all_books':
 	$book->get_all();
 	break;
