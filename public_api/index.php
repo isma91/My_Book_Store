@@ -68,7 +68,7 @@ switch ($_POST["action"]) {
 	$order->get_order($_POST["id"], $_SESSION["token"]);
 	break;
 	case 'edit_order':
-	$order->edit_order($_POST["type"], $_POST["id_book"], $_POST["id_customer"]);
+	$order->edit_order($_POST["id_order"], $_POST["type"], $_POST["id_book"], $_POST["id_customer"]);
 	break;
 	case 'remove_order':
 	$order->remove_order($_POST['id'], $_SESSION["token"]);
