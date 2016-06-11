@@ -107,7 +107,9 @@ label,
 #resume_error,
 #add_customer_error,
 #edit_book_error,
-#edit_customer_error {
+#edit_customer_error,
+#edit_login_error,
+#edit_password_error {
 	text-align: center;
 	color: #FF0000;
 	font-weight: bold;
