@@ -38,7 +38,7 @@ DocumentRoot path/to/project/
 
 After that you can put the .conf file in your apache directory (/etc/apache2/sites-availables) and :  
 ```
-sudo a2ensite display.prod.conf
+sudo a2ensite my_book_store.prod.conf
 sudo service apache2 reload
 ```
 
