@@ -72,6 +72,16 @@ class BooksController extends Book
         } elseif ($file_size > 5242880) {
             self::send_json("Your picture is more than 5Mo !!", null);
         } else {
+            $get_author_books = $bdd->getBdd()->prepare("SELECT * FROM books WHERE author = :author");
+            $get_author_books->bindParam(":author", $author);
+            $get_author_books->execute();
+            $author_books = $get_author_books->fetchAll(\PDO::FETCH_ASSOC);
+            foreach ($author_books as $object) {
+                if ($object["name"] === $book_name) {
+                    self::send_json("Book already saved in the database !!", null);
+                    return fasle;
+                }
+            }
             $create = $bdd->getBdd()->prepare('INSERT INTO `books`(`name`, `author`, `editor`, `year`, `kind`, `type`, `resume`) VALUES (:name, :author, :editor, :year, :kind, :type, :resume)');
             $create->bindParam(':name', $book_name);
             $create->bindParam(':author', $author);
