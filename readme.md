@@ -6,6 +6,9 @@
 
 /!\ HOW TO USE /!\
 ------------------
+
+Don't forget to import the sql file before !!   
+
 LOGIN : admin   
 PASSWORD : admin
 
