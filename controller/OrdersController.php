@@ -91,6 +91,16 @@ class OrdersController extends Order
     public function edit_order($id, $type, $id_customer, $id_book)
     {
         $bdd = new Bdd();
+        $get_customer_order = $bdd->getBdd()->prepare("SELECT * FROM orders WHERE id_customer = :id_customer");
+        $get_customer_order->bindParam(":id_customer", $id_customer);
+        $get_customer_order->execute();
+        $customers_orders = $get_customer_order->fetchAll(\PDO::FETCH_ASSOC);
+        foreach ($customers_orders as $object) {
+            if ($object["id_customer"] === $id_customer && $object["id_book"] === $id_book && $object["type"] === $type) {
+                self::send_json("Order already saved in the database !!", null);
+                return fasle;
+            }
+        }
         $update = $bdd->getBdd()->prepare('UPDATE `orders` SET `type` = :type, `id_customer` = :id_customer, `id_book` = :id_book WHERE id = :id');
         $update->bindParam(':type', $type);
         $update->bindParam(':id_customer', $id_customer);
