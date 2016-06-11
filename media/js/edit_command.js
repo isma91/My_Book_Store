@@ -6,7 +6,7 @@ $(document).ready(function(){
 	var all_books;
 	var all_customers;
 	var results;
-	
+
 	results = new RegExp('[\?&]id=([^&#]*)').exec(window.location.href);
     if (results === null || results[1] === null || $.trim(results[1]) === "" || $.isNumeric(results[1]) === false) {
         window.location = "?page=commands";
@@ -47,9 +47,20 @@ $(document).ready(function(){
 			Materialize.toast('<p class="alert-failed">' + data.error + '<p>', 3000, 'rounded alert-failed');
 		}
 	});
+	$.post(path_to_ajax, {action: 'get_order', id: $('#id_order').val()}, function(data) {
+		data = JSON.parse(data);
+		if (data.error === null) {
+			$('#type option[value=' + data.data.type + ']').attr('selected', 'true');
+			$('#customer option[value=' + data.data.id_customer + ']').attr('selected', 'true');
+			$('#book option[value=' + data.data.id_book + ']').attr('selected', 'true');
+			$('select').material_select();
+		} else {
+			Materialize.toast('<p class="alert-failed">' + data.error + '<p>', 3000, 'rounded alert-failed');
+		}
+	});
 	$(document).on('click', '#validate_edit_command', function(event) {
 		event.preventDefault();
-		$.post(path_to_ajax, {action: 'edit_order', type: $('#type').val(), id_book: $('#book').val(), id_customer: $('#customer').val()}, function(data) {
+		$.post(path_to_ajax, {action: 'edit_order', id_order: $('#id_order').val(), type: $('#type').val(), id_book: $('#book').val(), id_customer: $('#customer').val()}, function(data) {
 			data = JSON.parse(data);
 			if (data.error === null) {
 				Materialize.toast('<p class="alert-success">Order edited successfullly !!<p>', 3000, 'rounded alert-success');
