@@ -16,9 +16,8 @@ $(document).ready(function(){
 	$.post(path_to_ajax, {action: 'get_all_books'}, function(data) {
 		data = JSON.parse(data);
 		if (data.error === null) {
-			all_books = '<div class="row"><div class="input-field col s12"><select class="icons">';
+			all_books = '<div class="row"><div class="input-field col s12"><select id="book" class="icons">';
 			$.each(data.data, function(index, object) {
-				console.log(object);
 				all_books = all_books + '<option value="' + object.id + '" data-icon="media/cover/' + object.cover + '" class="left circle">' + object.name + '</option>';
 			});
 			all_books = all_books + '</select><label>Book</label></div></div>';
@@ -31,7 +30,7 @@ $(document).ready(function(){
 	$.post(path_to_ajax, {action: 'get_all_customers'}, function(data) {
 		data = JSON.parse(data);
 		if (data.error === null) {
-			all_customers = '<div class="row"><div class="input-field col s12"><select name="customer">';
+			all_customers = '<div class="row"><div class="input-field col s12"><select id="customer">';
 			$.each(data.data, function(index, object) {
 				all_customers = all_customers + '<option value="' + object.id + '">' + object.lastname + ' ' + object.firstname + '</option>';
 			});
@@ -41,5 +40,16 @@ $(document).ready(function(){
 		} else {
 			Materialize.toast('<p class="alert-failed">' + data.error + '<p>', 3000, 'rounded alert-failed');
 		}
+	});
+	$(document).on('click', '#validate_add_command', function(event) {
+		event.preventDefault();
+		$.post(path_to_ajax, {action: 'add_order', type: $('#type').val(), id_book: $('#book').val(), id_customer: $('#customer').val()}, function(data) {
+			data = JSON.parse(data);
+			if (data.error === null) {
+				Materialize.toast('<p class="alert-success">Order added successfullly !!<p>', 3000, 'rounded alert-success');
+			} else {
+				Materialize.toast('<p class="alert-failed">' + data.error + '<p>', 3000, 'rounded alert-failed');
+			}
+		});
 	});
 });
