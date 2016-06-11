@@ -80,7 +80,6 @@ $(document).ready(function(){
         if (add_customer_error === "") {
             $.post(path_to_ajax, {action: 'add_customer', firstname: firstname, lastname: lastname, adresse: adresse, city: city, email: email}, function(data) {
                 data = JSON.parse(data);
-                console.log(data);
                 if (data.error === null) {
                     Materialize.toast('<p class="alert-success">Customer added successfully !!<p>', 3000, 'rounded alert-success');
                 } else {
