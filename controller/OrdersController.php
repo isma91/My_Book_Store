@@ -25,7 +25,7 @@ class OrdersController extends Order
     public function get_all()
     {
         $bdd = new Bdd();
-        $get_orders = $bdd->getBdd()->prepare('SELECT * FROM `orders`');
+        $get_orders = $bdd->getBdd()->prepare('SELECT orders.id AS "id", orders.type AS "type", books.name AS "book_name", customers.firstname AS "firstname", customers.lastname AS "lastname"  FROM `orders` INNER JOIN books ON books.id = orders.id_book INNER JOIN customers ON customers.id = orders.id_customer');
         $get_orders->execute();
         $orders = $get_orders->fetchAll(\PDO::FETCH_ASSOC);
         self::send_json(null, $orders);
@@ -48,27 +48,14 @@ class OrdersController extends Order
     public function add_order($type, $id_customer, $id_book)
     {
         $bdd = new Bdd();
-        $duplicate_email = false;
-        $get_all_email = $bdd->getBdd()->prepare('SELECT email FROM `orders`');
-        $get_all_email->execute();
-        $emails = $get_all_email->fetchAll(\PDO::FETCH_ASSOC);
-        foreach ($emails as $value) {
-            if ($value["email"] === $email) {
-                $duplicate_email = true;
-            }
-        }
-        if ($duplicate_email === true) {
-            self::send_json("Email already used by another order !!", null);
+        $create = $bdd->getBdd()->prepare('INSERT INTO `orders`(`type`, `id_customer`, `id_book`) VALUES (:type, :id_customer, :id_book)');
+        $create->bindParam(':type', $type);
+        $create->bindParam(':id_customer', $id_customer);
+        $create->bindParam(':id_book', $id_book);
+        if (!$create->execute()) {
+            self::send_json('A problem occurred while creating the order in the database !! Please contact the admin of the site !!', null);
         } else {
-            $create = $bdd->getBdd()->prepare('INSERT INTO `orders`(`type`, `id_customer`, `id_book`) VALUES (:type, :id_customer, :id_book)');
-            $create->bindParam(':type', $type);
-            $create->bindParam(':id_customer', $id_customer);
-            $create->bindParam(':id_book', $id_book);
-            if (!$create->execute()) {
-                self::send_json('A problem occurred while creating the order in the database !! Please contact the admin of the site !!', null);
-            } else {
-                self::send_json(null, null);
-            }
+            self::send_json(null, null);
         }
     }
 
