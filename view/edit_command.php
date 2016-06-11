@@ -36,8 +36,5 @@
             </div>
         </div>
     </div>
-    <span id="hidden_type"></span>
-    <span id="hidden_book"></span>
-    <span id="hidden_customer"></span>
 </body>
 </html>
