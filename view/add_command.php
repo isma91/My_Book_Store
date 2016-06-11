@@ -17,7 +17,7 @@
         <div id="add_command">
             <div class="row">
                 <div class="input-field col s12">
-                    <select name="type">
+                    <select id="type">
                         <option value="purchase">Purchase</option>
                         <option value="borrowing">Borrowing</option>
                     </select>
@@ -26,6 +26,9 @@
             </div>
             <div id="all_books"></div>
             <div id="all_customers"></div>
+            <div class="row end_button">
+                <button class="waves-effect btn-flat" id="validate_add_command">Add Order</button>
+            </div>
         </div>
     </div>
 </body>
