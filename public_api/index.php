@@ -59,7 +59,7 @@ switch ($_POST["action"]) {
 	$customer->remove_customer($_POST['id'], $_SESSION["token"]);
 	break;
 	case 'add_order':
-	$order->add_order();
+	$order->add_order($_POST["type"], $_POST["id_book"], $_POST["id_customer"]);
 	break;
 	case 'get_all_orders':
 	$order->get_all();
@@ -68,7 +68,7 @@ switch ($_POST["action"]) {
 	$order->get_order($_POST["id"], $_SESSION["token"]);
 	break;
 	case 'edit_order':
-	$order->edit_order();
+	$order->edit_order($_POST["type"], $_POST["id_book"], $_POST["id_customer"]);
 	break;
 	case 'remove_order':
 	$order->remove_order($_POST['id'], $_SESSION["token"]);
