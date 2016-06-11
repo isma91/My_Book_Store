@@ -48,29 +48,25 @@ class CustomersController extends Customer
     public function add_customer($firstname, $lastname, $adresse, $city, $email)
     {
         $bdd = new Bdd();
-        $duplicate_email = false;
         $get_all_email = $bdd->getBdd()->prepare('SELECT email FROM `customers`');
         $get_all_email->execute();
         $emails = $get_all_email->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($emails as $value) {
             if ($value["email"] === $email) {
-                $duplicate_email = true;
+                self::send_json("Email already used by another customer !!", null);
+                return false;
             }
         }
-        if ($duplicate_email === true) {
-            self::send_json("Email already used by another customer !!", null);
+        $create = $bdd->getBdd()->prepare('INSERT INTO `customers`(`firstname`, `lastname`, `adresse`, `city`, `email`) VALUES (:firstname, :lastname, :adresse, :city, :email)');
+        $create->bindParam(':firstname', $firstname);
+        $create->bindParam(':lastname', $lastname);
+        $create->bindParam(':adresse', $adresse);
+        $create->bindParam(':city', $city);
+        $create->bindParam(':email', $email);
+        if (!$create->execute()) {
+            self::send_json('A problem occurred while creating the customer in the database !! Please contact the admin of the site !!', null);
         } else {
-            $create = $bdd->getBdd()->prepare('INSERT INTO `customers`(`firstname`, `lastname`, `adresse`, `city`, `email`) VALUES (:firstname, :lastname, :adresse, :city, :email)');
-            $create->bindParam(':firstname', $firstname);
-            $create->bindParam(':lastname', $lastname);
-            $create->bindParam(':adresse', $adresse);
-            $create->bindParam(':city', $city);
-            $create->bindParam(':email', $email);
-            if (!$create->execute()) {
-                self::send_json('A problem occurred while creating the customer in the database !! Please contact the admin of the site !!', null);
-            } else {
-                self::send_json(null, null);
-            }
+            self::send_json(null, null);
         }
     }
 
