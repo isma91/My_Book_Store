@@ -77,6 +77,57 @@ class UsersController extends User
         }
     }
 
+    public function edit_login($id, $old_login, $new_login, $token)
+    {
+        $bdd = new Bdd();
+        if (!$this->_check_token($token)) {
+            self::send_json("Bad token !! Logout and login to avoid the problem !!", null);
+            return false;
+        }
+        $get_old_login = $bdd->getBdd()->prepare("SELECT login FROM users WHERE id = :id");
+        $get_old_login->bindParam(":id", $id);
+        $get_old_login->execute();
+        $user_old_login = $get_old_login->fetch(\PDO::FETCH_ASSOC);
+        if ($user_old_login["login"] !== $old_login) {
+            self::send_json("Bad old login !!", null);
+            return false;
+        }
+        $update_login = $bdd->getBdd()->prepare('UPDATE users SET login = :login WHERE id = :id');
+        $update_login->bindParam(":login", $new_login);
+        $update_login->bindParam(":id", $id);
+        if (!$update_login->execute()) {
+            self::send_json("A problem occurred when we update your login !! Please contact the admin of the site !!", null);
+        } else {
+            self::send_json(null, null);
+        }
+    }
+
+    public function edit_password($id, $old_password, $new_password, $token)
+    {
+        $bdd = new Bdd();
+        if (!$this->_check_token($token)) {
+            self::send_json("Bad token !! Logout and login to avoid the problem !!", null);
+            return false;
+        }
+        $get_old_password = $bdd->getBdd()->prepare("SELECT pass FROM users WHERE id = :id");
+        $get_old_password->bindParam(":id", $id);
+        $get_old_password->execute();
+        $user_old_password = $get_old_password->fetch(\PDO::FETCH_ASSOC);
+        if (!$this->_check_password($old_password, $user_old_password["pass"])) {
+            self::send_json("Bad old password !!", null);
+            return false;
+        }
+        $new_password = $this->_hash_password($new_password);
+        $update_password = $bdd->getBdd()->prepare('UPDATE users SET pass = :pass WHERE id = :id');
+        $update_password->bindParam(":pass", $new_password);
+        $update_password->bindParam(":id", $id);
+        if (!$update_password->execute()) {
+            self::send_json("A problem occurred when we update your password !! Please contact the admin of the site !!", null);
+        } else {
+            self::send_json(null, null);
+        }
+    }
+
     private function _update_token($id)
     {
         $bdd = new Bdd();
