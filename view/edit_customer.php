@@ -16,11 +16,11 @@
         </div>
         <div id="edit_customer_error"></div>
         <div id="edit_customer">
-        <div class="row">
-            <div class="input-field col s12">
-                <input type="hidden" id="id_customer" name="id" value="<?php echo $_GET['id']; ?>">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="hidden" id="id_customer" name="id" value="<?php echo $_GET['id']; ?>">
+                </div>
             </div>
-        </div>
             <div class="row">
                 <div class="input-field col s12">
                     <input id="first_name" type="text" name="first_name" placeholder="Firstname">
