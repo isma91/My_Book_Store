@@ -15,7 +15,7 @@
 */
 return [
 	'host' => 'localhost',
-	'dbname' => 'my_mini_tweet',
+	'dbname' => 'my_book_store',
 	'user' => 'root',
 	'password' => '******'
 ];
